@@ -11,6 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 /**
  * @author sohel
  *
@@ -23,6 +25,7 @@ public class Transaction {
 	@Column
 	private TransactionType transactionType;
 	@Column
+	@JsonFormat(pattern = "dd-mm-yyyy")
 	private Date transactionDate;
 	@Column
 	private double amount;

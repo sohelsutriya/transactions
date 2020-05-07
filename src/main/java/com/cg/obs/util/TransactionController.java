@@ -30,25 +30,26 @@ import io.swagger.annotations.ApiResponses;
 public class TransactionController {
 	@Autowired
 	private TransactionService service;
-	
+
 	@GetMapping(path = "/transactions")
 	@ApiOperation(value = "getAllTransactions", nickname = "getAllTransactions")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Success", response = Transaction.class),
 			@ApiResponse(code = 500, message = "Failure", response = Transaction.class) })
-	public List<Transaction> getAllTransactions(){
+	public List<Transaction> getAllTransactions() {
 		System.out.println("This will return list of all transactions");
 		return service.findAll();
 	}
-	
+
 	@GetMapping(path = "/transactions/{accountNo}")
 	@ApiOperation(value = "getTransactionByAccountNo", nickname = "getTransactionByAccountNo")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Success", response = Transaction.class),
 			@ApiResponse(code = 500, message = "Failure", response = Transaction.class) })
-	public List<Transaction> getTransactionByAccountNo(@PathVariable String accountNo){
+	public List<Transaction> getTransactionByAccountNo(@PathVariable String accountNo) {
 		System.out.println("this will return transaction for account");
-		return service.findAll().stream().filter(x->(x.getAccountNo().equals(accountNo))).collect(Collectors.toList());
+		return service.findAll().stream().filter(x -> (x.getAccountNo().equals(accountNo)))
+				.collect(Collectors.toList());
 	}
-	
+
 	@PostMapping(path = "/transactions/add")
 	@ApiOperation(value = "addTransaction", nickname = "addTransaction")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Success", response = Transaction.class),
